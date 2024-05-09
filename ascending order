@@ -1,0 +1,12 @@
+numbers = [5,3,7,9,8,4,2]
+for i in range(len(numbers)):
+    for j in range(i+1,len(numbers)):
+        if numbers[i] > numbers[j]:
+           numbers[i] , numbers[j] = numbers[j], numbers[i]
+print("Ascending order:",numbers)
+
+for i in range(len(numbers)):
+    for j in range(i+1,len(numbers)):
+        if numbers[i] < numbers[j]:
+           numbers[i] , numbers[j] = numbers[j], numbers[i]
+print("Descending order:",numbers)
