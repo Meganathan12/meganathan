@@ -1,0 +1,6 @@
+def inr_to_usd(inr_amount):
+    usd_amount = inr_amount / 74.83  # Current exchange rate (as of 2022)
+    return usd_amount
+
+inr_amount = float(input("Enter amount in Indian Rupees: "))
+print(f"{inr_amount} INR is equal to {inr_to_usd(inr_amount)} USD")
