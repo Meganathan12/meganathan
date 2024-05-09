@@ -1,0 +1,27 @@
+voter_list = ['Voter1', 'Voter2', 'Voter3', 'Voter4', 'Voter5', 'Voter6', 'Voter7', 'Voter8', 'Voter9', 'Voter10']
+
+ dictionary to store the votes
+votes = {candidate: 0 for candidate in candidates}
+
+for voter in voter_list:
+    vote = input(f"{voter}, please cast your vote (A, B, C): ")
+    if vote.upper() in candidates:
+        votes[vote.upper()] += 1
+    else:
+        print("Invalid vote. Please vote again.")
+
+sorted_votes = sorted(votes.items(), key=lambda x: x[1], reverse=True)
+winner, winner_votes = sorted_votes[0]
+runner_up, runner_up_votes = sorted_votes[1]
+
+print(f"Winner: Candidate {winner} with {winner_votes} votes")
+print(f"Runner-up: Candidate {runner_up} with {runner_up_votes} votes")
+
+winner_voters = [voter for voter in voter_list if voter_list.index(voter) % len(candidates) == candidates.index(winner)]
+runner_up_voters = [voter for voter in voter_list if voter_list.index(voter) % len(candidates) == candidates.index(runner_up)]
+
+print("Members who voted for the Winner:")
+print(winner_voters)
+
+print("Members who voted for the Runner-up:")
+print(runner_up_voters)
