@@ -1,0 +1,6 @@
+keys = ['Ten','Twenty','Thirty']
+values = [10,20,30]
+result_dict ={}
+for i in range(len(keys)):
+    result_dict.update({keys[i]:values[i]})
+print("Result dictionary:",result_dict)
