@@ -1,0 +1,4 @@
+input_list = [0, 1, 0, 1, 1, 0, 1, 0, 1, 0]
+sorted_list = sorted(input_list)
+
+print(sorted_list)
