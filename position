@@ -1,0 +1,11 @@
+a = [45,67,83,24,55,87,77,34]
+number_to_find = 55
+index_position = -1
+for i in range(len(a)):
+    if a[i] == number_to_find:
+        index_position = i
+        break
+if index_position != -1:
+    print("The position of",number_to_find,"is",index_position)
+else:
+    print(number_to_find,"is not present in the list.")
