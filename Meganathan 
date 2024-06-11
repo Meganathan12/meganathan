@@ -1,0 +1,49 @@
+import random
+def create_student_file(f_path):
+    f = open(f_path, 'w')
+    f.write('Name,RegisterNumber,Grade1,Grade2,Grade3,Grade4,Grade5,Total,Percentage\n')
+    for n in range(1, 61):
+        name = f'Student{n}'
+        register_number = f'Reg.no.654321{n:02}'
+        grades = [random.choice(['O', 'A', 'B', 'C', 'D', 'U']) for _ in range(5)]
+        total = sum([10 if grade == 'O' else 9 if grade == 'A' else 8 if grade == 'B' else 7 if grade == 'C' else 0 for grade in grades])
+        percentage = (total / 50) * 100
+        f.write(f'{name},{register_number},{",".join(grades)},{total},{percentage:.2f}\n')
+    f.close()
+def display_results(s_path):
+    f = open(s_path, 'r')
+    print(f.read())
+    f.close()
+def analyze_student_data(input_f, output_f):
+    infile = open(input_f, 'r')
+    outfile = open(output_f, 'w')
+    next(infile)
+    categories = {
+        '90% and above': [],
+        '80% to 89.99%': [],
+        '70% to 79.99%': [],
+        'below 70%': [],
+        'having arrear': []
+    }
+    for line in infile:
+        data = line.strip().split(',')
+        percentage = float(data[-1])
+        if 'U' in data[2:7]:
+            categories['having arrear'].append(data[0])
+        elif percentage >= 90:
+            categories['90% and above'].append(data[0])
+        elif percentage >= 80:
+            categories['80% to 89.99%'].append(data[0])
+        elif percentage >= 70:
+            categories['70% to 79.99%'].append(data[0])
+        else:
+            categories['below 70%'].append(data[0])
+            
+    for category, students in categories.items():
+        outfile.write(f'{category}: {", ".join(students)}\n')
+    infile.close()
+    outfile.close()
+
+create_student_file('result.txt')
+display_results('result.txt')
+analyze_student_data('result.txt', 'analysis.txt')
